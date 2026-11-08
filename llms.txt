@@ -1,0 +1,30 @@
+# Health Passport
+
+> Health Passport is a laboratory management system (LIS) and lab report software for private medical laboratories in Sri Lanka. It is made by Imigap (Pvt) Ltd, a software company in Galle, Sri Lanka, and is used by 52+ labs across the country.
+
+## What it does
+- Billing: bill patients and issue receipts.
+- Patient registration by phone number (about 8 seconds per patient), with patient history.
+- Workflow management: track pending tests, approve results and issue reports.
+- Automatic reports: calculations, reference ranges and flags, with the lab's own letterhead, signature and layout.
+- Online and SMS report delivery to patients.
+- Doctor and outsource lab commissions, and separate prices for third-party labs.
+- Unlimited collecting centres and unlimited staff accounts.
+- Web-based: runs on a normal computer or a phone. Analyzer connection is available.
+
+## Pricing
+- Starting price: Rs. 4,200 per month (LKR).
+- No upfront fees. Free online training, support, maintenance and lifetime updates.
+
+## Proof
+- 52+ private labs across Sri Lanka, 1M+ reports issued.
+- Towns served include Nugegoda, Kadawatha, Gampaha, Avissawella, Katunayake, Nittambuwa, Mirigama, Horana, Kalutara, Rambukkana, Mawanella, Ratnapura, Pelmadulla, Embilipitiya, Ambanpola, Ehetuwewa, Nuwara Eliya, Rikillagaskada, Kekanadura, Puhulwella, Akuressa, Hakmana, Dickwella, Hambantota, Angunakolapelessa, Wellawaya, Thanamalwila, Ampara, Uhana, Pottuvil, Kattankudy, Walachchena, Muttur, Sripura, Polonnaruwa, Medirigiriya and Medawachchiya.
+
+## Getting started
+- Setup takes 2 to 3 days. Labs can try a demo first.
+- Request a demo: https://healthpassport.lk/#demo
+- Phone and WhatsApp: +94 76 051 0500
+- Email: healthpassportlk@gmail.com
+
+## Company
+- Imigap (Pvt) Ltd, Galle, Sri Lanka: https://imigap.com/

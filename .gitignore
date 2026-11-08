@@ -1,0 +1,6 @@
+# Local only: backups, notes and editor files are not published
+.versions/
+.claude/
+.DS_Store
+page-plan-and-copy.md
+IMAGE-CREDITS.md

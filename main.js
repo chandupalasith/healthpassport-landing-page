@@ -25,12 +25,51 @@ const seen = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((el) => seen.observe(el));
 
-// Pin positions on the 553 x 972 map image.
-const pins = [[283,254],[391,348],[331,418],[368,506],[496,526],[334,575],[482,614],[519,713],[153,471],[176,467],[189,610],[203,626],[129,628],[123,651],[72,645],[63,663],[88,684],[75,713],[148,695],[277,691],[327,723],[114,749],[104,785],[191,757],[224,771],[359,813],[292,838],[311,884],[210,891],[233,916],[258,922],[237,710],[228,927],[342,686]];
+// Town pins on the 553 x 972 map image: x = 151 + (lon - 80.214) * 230.6, y = 27 + (9.835 - lat) * 231.6
+const pins = [
+  [79,715,'Nugegoda'],
+  [91,683,'Kadawatha'],
+  [102,662,'Gampaha'],
+  [149,694,'Avissawella'],
+  [75,644,'Katunayake'],
+  [124,650,'Nittambuwa'],
+  [130,628,'Mirigama'],
+  [116,749,'Horana'],
+  [93,780,'Kalutara'],
+  [193,609,'Rambukkana'],
+  [205,625,'Mawanella'],
+  [194,757,'Ratnapura'],
+  [226,772,'Pelmadulla'],
+  [298,836,'Embilipitiya'],
+  [156,472,'Ambanpola'],
+  [175,466,'Ehetuwewa'],
+  [276,691,'Nuwara Eliya'],
+  [282,650,'Rikillagaskada'],
+  [240,919,'Kekanadura'],
+  [244,902,'Puhulwella'],
+  [212,892,'Akuressa'],
+  [254,897,'Hakmana'],
+  [259,923,'Dickwella'],
+  [360,886,'Hambantota'],
+  [309,877,'Angunakolapelessa'],
+  [356,744,'Wellawaya'],
+  [362,813,'Thanamalwila'],
+  [490,615,'Ampara'],
+  [479,601,'Uhana'],
+  [524,714,'Pottuvil'],
+  [501,525,'Kattankudy'],
+  [455,471,'Walachchena'],
+  [394,348,'Muttur'],
+  [286,255,'Sripura'],
+  [337,466,'Polonnaruwa'],
+  [324,419,'Medirigiriya'],
+  [215,327,'Medawachchiya']
+];
 const map = document.querySelector('[data-pins]');
-pins.forEach(([x, y], i) => {
+pins.forEach(([x, y, town], i) => {
   const pin = document.createElement('span');
   pin.className = 'pin';
+  pin.title = town;
   pin.style.cssText = `left:${x / 5.53}%;top:${y / 9.72}%;--d:${(i * 0.37) % 3.6}s`;
   map.append(pin);
 });
@@ -54,11 +93,30 @@ const onScroll = () => {
 addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
-// The demo form has no server: it opens WhatsApp with the message ready to send.
-document.querySelector('[data-demo-form]').addEventListener('submit', (event) => {
+// Demo form: emailed to healthpassportlk@gmail.com through FormSubmit, without leaving the page.
+const demoForm = document.querySelector('[data-demo-form]');
+const formStatus = demoForm.querySelector('[data-form-status]');
+demoForm.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const { name, lab, town } = event.target.elements;
-  const lines = ['ආයුබෝවන්, මට Health Passport demo login එක එවන්න.', `Name: ${name.value}`, `Lab: ${lab.value}`];
-  if (town.value) lines.push(`Town: ${town.value}`);
-  open(`https://wa.me/94760510500?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
+  const button = demoForm.querySelector('button');
+  button.disabled = true;
+  formStatus.className = '';
+  formStatus.textContent = 'Sending…';
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/healthpassportlk@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(demoForm))),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || res.status);
+    demoForm.reset();
+    formStatus.className = 'ok';
+    formStatus.textContent = 'Thank you! We received your request and will call you soon.';
+  } catch (error) {
+    formStatus.className = 'err';
+    formStatus.textContent = 'Sorry, that did not send. Please call 0760 510 500.';
+  } finally {
+    button.disabled = false;
+  }
 });
