@@ -280,6 +280,9 @@ footer { position: relative; background: var(--ink) var(--hex); color: #fff; }
 .foot-cols h3::after { content: ""; position: absolute; left: 0; bottom: 0; width: 72px; height: 3px; border-radius: 2px; background: var(--green); }
 .foot-cols a { text-decoration: none; color: rgba(255, 255, 255, .82); transition: color .2s; }
 .foot-cols a:hover { color: var(--green); }
+.foot-cols .social { display: inline-flex; width: 40px; height: 40px; margin-top: 6px; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255, 255, 255, .1); color: #fff; transition: background .2s, transform .2s; }
+.foot-cols .social:hover { background: #1877F2; color: #fff; transform: translateY(-2px); }
+.foot-cols .social svg { width: 22px; height: 22px; }
 .foot-logo { display: inline-block; background: #fff; border-radius: 14px; padding: 0 12px; margin-bottom: 16px; }
 .foot-cols p { max-width: 430px; font-size: 15.5px; color: rgba(255, 255, 255, .82); }
 .copy { background: var(--blue-deep); text-align: center; padding: 16px 24px; font-size: 15px; }
